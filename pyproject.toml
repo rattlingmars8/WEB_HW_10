@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "web-hw-10"
+version = "0.1.0"
+description = ""
+authors = ["rattlingmars8 <rattlingmars8@gmail.com>"]
+readme = "README.md"
+packages = [{include = "web_hw_10"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.2"
+pillow = "^9.5.0"
+pymongo = "^4.3.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
