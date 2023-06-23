@@ -1,0 +1,31 @@
+<nav>
+    <ul class="pager">
+        <li class="previous">
+            {% if url_templates == '/' %}
+            <a class="{% if not quotes.has_previous %}disabled{% endif %}"
+               href="{% if quotes.has_previous %}{% url 'quotes:root_paginate' quotes.previous_page_number %}{% else %}#{% endif %}">
+                <span aria-hidden="true">←</span>Previous
+            </a>
+            {% elif url_templates == "tag" %}
+            <a class="{% if not quotes.has_previous %}disabled{% endif %}"
+               href="{% if quotes.has_previous %}{% url 'quotes:tag_page' tag quotes.previous_page_number %}{% else %}#{% endif %}">
+                <span aria-hidden="true">←</span>Previous
+            </a>
+            {% endif %}
+        </li>
+
+        <li class="next">
+            {% if url_templates == '/' %}
+            <a class="{% if not quotes.has_next %}disabled{% endif %}"
+               href="{% if quotes.has_next %}{% url 'quotes:root_paginate' quotes.next_page_number %}{% else %}#{% endif %}">
+                <span aria-hidden="true">Next→</span>
+            </a>
+            {% elif url_templates == "tag" %}
+            <a class="{% if not quotes.has_next %}disabled{% endif %}"
+               href="{% if quotes.has_next %}{% url 'quotes:tag_page' tag quotes.next_page_number %}{% else %}#{% endif %}">
+                <span aria-hidden="true">Next→</span>
+            </a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
