@@ -6,6 +6,7 @@ class Author(models.Model):
     born_date = models.CharField(max_length=50)
     born_loc = models.CharField(max_length=150)
     desc = models.TextField()
+    photo_url = models.URLField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
 

@@ -1,5 +1,3 @@
-/* Загальні стилі */
-
 .quote {
     padding: 10px;
     margin-bottom: 30px;
@@ -139,10 +137,6 @@
     flex-grow: 1;
 }
 
-.quote-container {
-    width: 45%;
-}
-
 /* Шрифти */
 h1.authorName {
     font-family: Arial, sans-serif; /* Шрифт заголовків */
@@ -156,51 +150,4 @@ h1.authorName {
 
 h3 {
     font-family: Arial, sans-serif; /* Шрифт заголовків */
-}
-
-/* Адаптивність */
-
-@media (max-width: 992px) {
-    .author-container {
-        flex-direction: column;
-    }
-
-    .author-details,
-    .quote-container {
-        width: 100%;
-    }
-}
-
-@media (max-width: 576px) {
-    .dataTitle {
-        width: 50%;
-    }
-}
-
-@media (max-width: 480px) {
-    .data-row {
-        flex-wrap: wrap;
-    }
-
-    .dataTitle,
-    .dataItem {
-        width: 100%;
-    }
-}
-
-/* Стилі для сторінки автора */
-
-.author-quote-photo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    background-color: #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-right: 10px;
-}
-
-.author-name {
-    font-size: 14px;
 }
