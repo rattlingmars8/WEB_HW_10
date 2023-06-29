@@ -1,0 +1,32 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+<h1>Search Result</h1>
+<p>Showing search results for: {{ query }}</p>
+
+{% for quote in quotes %}
+<div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
+    <span class="text" itemprop="text">{{ quote.quote }}</span>
+    <div class="author-info">
+        <a href="{% url 'quotes:author_info' quote.author.fullname %}">
+            <img class="author-quote-photo" src="{{ quote.author.photo_url }}"
+                 alt="{{ quote.author.fullname }}">
+            <span class="author-name">{{ quote.author.fullname }}</span>
+        </a>
+    </div>
+    <div class="tags">
+        Tags:
+        {% for tag in quote.tags.all %}
+        <a class="tag" href="{% url 'quotes:tag_page' tag.name 1 %}">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+{% if not quotes %}
+<p>No quotes found.</p>
+{% endif %}
+
+{% include 'quotes/pagin.html' with quotes=quotes url_templates='search' query=query %}
+{% endblock %}
+
