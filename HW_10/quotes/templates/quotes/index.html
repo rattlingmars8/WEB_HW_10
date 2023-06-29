@@ -6,12 +6,24 @@
 {% endif %}
 <div class="row">
     <div class="col-md-8">
+        {% if user.is_authenticated %}
+        <!-- Добавить автора -->
+        <a href="{% url 'quotes:add_author' %}" class="btn btn-primary mb-3 md-5">Додати Автора</a>
+
+        <!-- Добавить цитату -->
+        <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary mb-3 md-5">Додати Цитату</a>
+
+        <!-- Скачать данные -->
+        <a href="{% url 'quotes:download_data' %}" class="btn btn-primary mb-3 md-5">Скачати дані</a>
+        {% endif %}
+
         {% for quote in quotes %}
         <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
             <span class="text" itemprop="text">{{ quote.quote }}</span>
             <div class="author-info">
                 <a href="{% url 'quotes:author_info' quote.author.fullname %}">
-                    <img class="author-quote-photo" src="{{ quote.author.photo_url }}" alt="{{ quote.author.fullname }}">
+                    <img class="author-quote-photo" src="{{ quote.author.photo_url }}"
+                         alt="{{ quote.author.fullname }}">
                     <span class="author-name">{{ quote.author.fullname }}</span>
                 </a>
             </div>
@@ -27,18 +39,7 @@
         {% include 'quotes/pagin.html' %}
     </div>
 
-   <div class="col-md-4">
-    <div class="sidebar">
-        <h4>Popular Tags</h4>
-        <ul class="popular-tags">
-            {% for tag in popular_tags %}
-            <li class="tag-item-{{ forloop.counter }}">
-                <a class="tag" style="font-size: {{ size }}px " href="{% url 'quotes:tag_page' tag.name 1 %}">{{ tag.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
+    {% include 'quotes/sidebar.html' %}
 
 </div>
 {% endblock %}

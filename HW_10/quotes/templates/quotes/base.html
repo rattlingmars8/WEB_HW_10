@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'qoutes/style.css' %}">
+    <link rel="stylesheet" href="{% static 'qoutes\style.css' %}">
     <title>HW_10</title>
 </head>
 <body>
@@ -23,7 +23,9 @@
             <p>
                 {% if user.is_authenticated %}
             <div class="greeting">
-                Hello, <span class="text-primary">{{ user.username }}</span>!
+                <a>
+                    Hello, <span class="text-primary">{{ user.username }}</span>!
+                </a>
             </div>
             <div class="d-inline-block align-middle">
                 <a href="{% url 'users:logout' %}" class="btn btn-primary btn-sm" style="margin-right: 10px;">Logout</a>
@@ -31,7 +33,7 @@
             {% else %}
             <div class="d-inline-block align-middle">
                 <a href="{% url 'users:register' %}" class="btn btn-primary btn-sm"
-                   style="margin-right: 10px;">Register</a>
+                   style="margin-right: 8px;">Register</a>
                 <a href="{% url 'users:login' %}" class="btn btn-primary btn-sm">Login</a>
             </div>
             {% endif %}

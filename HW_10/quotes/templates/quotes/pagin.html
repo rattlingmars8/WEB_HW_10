@@ -1,5 +1,5 @@
 {% load static %}
-    <link rel="stylesheet" href="{% static 'qoutes/style.css' %}">
+<link rel="stylesheet" href="{% static 'qoutes/style.css' %}">
 <nav>
     <ul class="pager">
         <li class="previous {% if not quotes.has_previous %}disabled{% endif %}">
@@ -9,6 +9,10 @@
             </a>
             {% elif url_templates == "tag" %}
             <a href="{% if quotes.has_previous %}{% url 'quotes:tag_page' tag quotes.previous_page_number %}{% else %}#{% endif %}">
+                <span aria-hidden="true">←</span>Previous
+            </a>
+            {% elif url_templates == "search" %}
+            <a href="{% if quotes.has_previous %}{% url 'quotes:search_result' query quotes.previous_page_number %}{% else %}#{% endif %}">
                 <span aria-hidden="true">←</span>Previous
             </a>
             {% endif %}
@@ -21,6 +25,10 @@
             </a>
             {% elif url_templates == "tag" %}
             <a href="{% if quotes.has_next %}{% url 'quotes:tag_page' tag quotes.next_page_number %}{% else %}#{% endif %}">
+                <span aria-hidden="true">Next→</span>
+            </a>
+            {% elif url_templates == "search" %}
+            <a href="{% if quotes.has_next %}{% url 'quotes:search_result' %}{{ quotes.next_page_number }}{% else %}#{% endif %}">
                 <span aria-hidden="true">Next→</span>
             </a>
             {% endif %}

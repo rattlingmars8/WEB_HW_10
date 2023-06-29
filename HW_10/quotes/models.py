@@ -6,7 +6,8 @@ class Author(models.Model):
     born_date = models.CharField(max_length=50)
     born_loc = models.CharField(max_length=150)
     desc = models.TextField()
-    photo_url = models.URLField(blank=False)
+    photo_url = models.URLField(blank=True,
+                                default='https://media.npr.org/assets/img/2022/08/25/trh_incognito_artwork_wide-98bd003daa0a817e661cb600cbdb44b26b0c718c-s1100-c50.jpg')
     created_at = models.DateTimeField(auto_now_add=True)
 
 
