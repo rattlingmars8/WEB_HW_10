@@ -10,6 +10,9 @@ class Author(models.Model):
                                 default='https://media.npr.org/assets/img/2022/08/25/trh_incognito_artwork_wide-98bd003daa0a817e661cb600cbdb44b26b0c718c-s1100-c50.jpg')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.fullname
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, null=False, unique=True)

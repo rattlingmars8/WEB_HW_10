@@ -1,5 +1,6 @@
 from django import forms
 from .models import Author, Quotes, Tag
+from django_select2.forms import Select2Widget
 
 
 class AddAuthorForm(forms.ModelForm):
@@ -14,9 +15,13 @@ class AddAuthorForm(forms.ModelForm):
             "photo_url": "Link to photo"
         }
 
+
 class AddQuoteForm(forms.ModelForm):
     custom_tags = forms.CharField(label='Custom Tags', required=False)
     custom_author = forms.CharField(label='Custom Author', required=False)
+    existing_author = forms.ModelChoiceField(queryset=Author.objects.all(),
+                                             widget=Select2Widget(attrs={'style': 'width: 50%'}),
+                                             label='Existing Author', required=False)
 
     class Meta:
         model = Quotes
@@ -39,11 +44,14 @@ class AddQuoteForm(forms.ModelForm):
                 tag, created = Tag.objects.get_or_create(name=custom_tag)
                 quote.tags.add(tag)
 
-        # Збереження введеного імені автора
+        # Збереження введеного імені автора або вибраного існуючого
         custom_author = self.cleaned_data['custom_author']
+        existing_author = self.cleaned_data['existing_author']
         if custom_author:
             author, created = Author.objects.get_or_create(fullname=custom_author)
             quote.author = author
+        elif existing_author:
+            quote.author = existing_author
 
         if commit:
             quote.save()

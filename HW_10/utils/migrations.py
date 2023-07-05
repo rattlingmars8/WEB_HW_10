@@ -43,7 +43,7 @@ from quotes.models import Quotes, Tag, Author # noqa
 #             q.tags.add(tag)
 
 try:
-    json_data = json.load(open('D:\PYton\DZshki\WEB\WEB_HW_10\HW_10\\utils\\authors_photos.json'))  # Загрузка данных из JSON-файла
+    json_data = json.load(open("authors_photos.json"))  # Загрузка данных из JSON-файла
 
     for i, author in enumerate(Author.objects.all()):
         photo_url = json_data.get(author.fullname,
